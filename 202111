@@ -8,3 +8,4 @@
 是光流估计中标准的误差度量，是预测光流向量和真实光流向量的欧式距离在所有像素上的均值。
 def EPE(input_flow, target_flow):
     return torch.norm(target_flow-input_flow,p=2,dim=1).mean()
+torch.norm,求指定维度上的范数
