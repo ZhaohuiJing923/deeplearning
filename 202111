@@ -1,3 +1,10 @@
 # 2021-10-31
 1. 列表保存为txt，需要str(list)。再次读取txt并转换成list，用impor ast，list1=ast.literal_eval(f)。可以实现。
 2. pytorch中tensor维度增加或减少。unsqueeze(需要扩充的维度), squeeze(需要减少的维度).
+
+
+# 2021-11-4
+1. EPE（Endpoint Error）光流
+是光流估计中标准的误差度量，是预测光流向量和真实光流向量的欧式距离在所有像素上的均值。
+def EPE(input_flow, target_flow):
+    return torch.norm(target_flow-input_flow,p=2,dim=1).mean()
