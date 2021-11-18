@@ -9,3 +9,13 @@
 def EPE(input_flow, target_flow):
     return torch.norm(target_flow-input_flow,p=2,dim=1).mean()
 torch.norm,求指定维度上的范数
+
+# 2021-11-18
+报错：WARNING:root:NaN or Inf found in input tensor.
+网上解决办法：模型训练过程中出现梯度消失或者梯度爆炸。降低初始的学习率，试过以后没有起作用。
+分析：加入了direction loss后报错，L1(tanh(fake_x/fake_y),tanh(flow_x/flow_y))。
+评估光流估计的质量方法——angular error（AE)：arccos((u0,v0)*(u1,v1))和 endpoint error sqrt((u0-u1)^2)。
+def AE(input_flow, target_flow):
+    return torch.acos(input_flow * target_flow)   # 此处为点乘，*,也可以写作torch.mul(input_flow, target_flow)
+
+
